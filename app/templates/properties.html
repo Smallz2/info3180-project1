@@ -5,7 +5,7 @@
 <div class="card-group">
   {% if properties | length != 0 %}
     {% for property in properties %}
-      <div class="col-4 d-flex align-self-stretch mt-4">
+      <div class="col-md-4 d-flex align-self-stretch mt-4">
         <div class="card">
           <img src="{{ url_for('get_image', filename=property.photo) }}" class="card-img-top">
           <div class="card-body p-0">
