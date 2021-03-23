@@ -2,7 +2,7 @@
 
 {% block main %}
 <h1 class="page-header mb-3">Properties</h1>
-<div class="row">
+<div class="card-group">
   {% if properties | length != 0 %}
     {% for property in properties %}
       <div class="col-md-4 mt-4">
@@ -24,7 +24,7 @@
               </div>
             </div>
 
-            <a href="{{ url_for('single_property', propertyid=property.id) }}" class="btn btn-primary w-100 no-radius">View Property</a>
+            <a href="{{ url_for('single_property', propertyid=property.id) }}" class="btn btn-primary w-100 no-radius place-botttom">View Property</a>
           </div>
         </div>
       </div>
