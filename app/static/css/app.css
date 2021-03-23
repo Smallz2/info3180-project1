@@ -5,6 +5,8 @@
   --light: #f4f6fa;
   --dark: #232e3c;
   --light-grey: #f9f9f9;
+  --teal: #0ca678;
+  --azule: #4299e1;
 }
 
 /* Body */
@@ -17,6 +19,35 @@ body {
 
 /* General Stuff */
 
+.btn-primary, .bg-primary {
+  background-color: var(--teal) !important;
+  border-color: var(--teal);
+}
+
+.me-4 {
+  margin-right: 2rem;
+}
+
+.btn-primary:hover {
+  border-color: var(--teal);
+}
+
+.bg-azure {
+  background: var(--azule);
+}
+
+.page-header {
+  font-weight: bold;
+}
+
 .me-2 {
   margin-right: .5rem;
+}
+
+.no-radius {
+  border-radius: 0px;
+}
+
+.pb-1 {
+  padding-bottom: 10px !important;
 }

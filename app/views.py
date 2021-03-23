@@ -6,7 +6,7 @@ This file creates your application.
 """
 import os
 from app import app, db
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, send_from_directory
 from werkzeug.utils import secure_filename
 from app.forms import PropertyForm
 from app.models import Property
@@ -24,7 +24,7 @@ def home():
 @app.route('/about/')
 def about():
 	"""Render the website's about page."""
-	return render_template('about.html', name="Mary Jane")
+	return render_template('about.html', name="Property Hunters")
 
 
 @app.route('/property', methods=["GET", "POST"])
@@ -35,7 +35,7 @@ def property():
 	if request.method == "POST" and form.validate_on_submit():
 		title = form.title.data
 		description = form.description.data
-		number_of_rooms = form.number_of_rooms.data
+		number_of_rooms = form.number_of_bedrooms.data
 		number_of_bathrooms = form.number_of_bathrooms.data
 		price = form.price.data
 		property_type = form.property_type.data
@@ -54,17 +54,27 @@ def property():
 		flash("Property was added successfully", 'success')
 		return redirect(url_for('properties'))
 	flash_errors(form)
-	return render_template('property.html', form=form)
+	return render_template('new_property.html', form=form)
 
 
 @app.route('/properties')
 def properties():
-  return render_template('properties.html')
+	return render_template('properties.html', properties=Property.query.all())
 
 
-# @app.route('/property/<propertyid>')
-# def property():
-#   return render_template('property.html')
+@app.route('/uploads/<filename>')
+def get_image(filename):
+  root_dir = os.getcwd()
+  return send_from_directory(os.path.join(root_dir, app.config['UPLOAD_FOLDER']), filename)
+
+
+@app.route('/property/<propertyid>')
+def single_property(propertyid):
+	single_property = Property.query.filter_by(id=propertyid).first()
+
+	if single_property is None:
+		return redirect(url_for('properties'))
+	return render_template('property.html', single_property=single_property)
 
 ###
 # The functions below should be applicable to all Flask apps.

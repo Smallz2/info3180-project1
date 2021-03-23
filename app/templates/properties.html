@@ -1,5 +1,38 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h1 class="page-header">Properties</h1>
+<h1 class="page-header mb-3">Properties</h1>
+<div class="row">
+  {% if properties | length != 0 %}
+    {% for property in properties %}
+      <div class="col-md-4 mt-4">
+        <div class="card">
+          <img src="{{ url_for('get_image', filename=property.photo) }}" class="card-img-top">
+          <div class="card-body p-0">
+            <div class="card-content p-4 pb-1 mb-4">
+              <h5 class="card-title font-weight-bold">{{ property.title }}</h5>
+              <div class="card-text d-flex align-items-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <circle cx="12" cy="11" r="3" />
+                  <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
+                </svg>
+                <small class="text-muted">{{ property.location }}</small>
+              </div>
+              <div>
+                <span class="badge rounded-pill bg-azure text-white">${{ property.price }}</span>
+              </div>
+            </div>
+
+            <a href="{{ url_for('single_property', propertyid=property.id) }}" class="btn btn-primary w-100 no-radius">View Property</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="m-0">No Properties yet</p>
+    <a href="{{ url_for('property') }}">add property</a>
+  {% endif %}
+</div>
+
 {% endblock %}

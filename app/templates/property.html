@@ -2,57 +2,62 @@
 
 {% block main %}
 
-<h1 class="page-header"><strong>Add New Property</strong></h1>
-
-<div class="card">
-  <div class="card-body">
-    <form action="{{ url_for('property') }}" method="post" enctype="multipart/form-data">
-      {{ form.csrf_token }}
-      <div class="mb-3">
-        {{ form.title.label}}
-        {{ form.title(class='form-control') }}
+<div class="col-12">
+  <div class="card">
+    <div class="row">
+      <div class="col-6">
+        <img src="{{ url_for('get_image', filename=single_property.photo) }}" class="w-100 h-100 object-cover" alt="{{ single_property.title }}-photo">
       </div>
+      <div class="col">
+        <div class="card-body">
+          <h3 class="card-title font-weight-bold">{{ single_property.title }}</h3>
+          
+          <div class="row m-0 mb-4">
+            <div class="me-2">
+              <span class="badge rounded-pill bg-azure text-white">${{ single_property.price }}</span>
+            </div>
+            <div>
+              <span class="badge rounded-pill bg-warning text-white">{{ single_property.property_type }}</span>
+            </div>
+          </div><!--/.row-->
 
-      <div class="mb-3">
-        {{ form.description.label}}
-        {{ form.description(class='form-control') }}
-      </div>    
-      
-      <div class="row mb-3">
-        <div class="col">
-          {{ form.number_of_rooms.label}}
-          {{ form.number_of_rooms(class='form-control', placeholder="3") }}
-        </div>   
-        <div class="col">
-          {{ form.number_of_bathrooms.label}}
-          {{ form.number_of_bathrooms(class='form-control', placeholder="2") }}
-        </div>   
+          <div>{{ single_property.description }}</div>
+          
+          <div class="row m-0 mt-4 mb-4">
+            <div class="card-text d-flex align-items-center me-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M3 7v11m0 -4h18m0 4v-8a2 2 0 0 0 -2 -2h-8v6" />
+                <circle cx="7" cy="10" r="1" />
+              </svg>
+              <small class="text-muted">{{ single_property.number_of_bedrooms }} Bedrooms </small>
+            </div>
+
+            <div class="card-text d-flex align-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M6.8 11a6 6 0 1 0 10.396 0l-5.197 -8l-5.2 8z" />
+                <path d="M6 14h12" />
+                <path d="M7.305 17.695l3.695 -3.695" />
+                <path d="M10.26 19.74l5.74 -5.74l-5.74 5.74z" />
+              </svg>
+              <small class="text-muted">{{ single_property.number_of_bathrooms }} Bathrooms </small>
+            </div>
+          </div><!--/.row-->
+
+          <div class="card-text d-flex align-items-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <circle cx="12" cy="11" r="3" />
+              <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
+            </svg>
+            <small class="text-muted">{{ single_property.location }} </small>
+          </div>
+          <a href="#" class="btn btn-primary">Email Realtor</a>
+        </div><!--/.card-body-->
       </div>
-
-      <div class="row mb-3">
-        <div class="col">
-          {{ form.price.label}}
-          {{ form.price(class='form-control', placeholder="15,000,000") }}
-        </div>   
-        <div class="col">
-          {{ form.property_type.label}}
-          {{ form.property_type(class='form-control') }}
-        </div>   
-      </div>
-
-      <div class="col-md-6 mb-3 p-0">
-        {{ form.location.label}}
-        {{ form.location(class='form-control', placeholder="10 Waterloo Rd") }}
-      </div>   
-
-      <div class="col-md-6 mb-3 p-0">
-        {{ form.photo.label}}
-        {{ form.photo(class='form-control') }}
-      </div>  
-
-      <button type="submit" class="btn btn-primary">Add Property</button>
-    </form>
-  </div>
+    </div>
+  </div><!--/.card-->
 </div>
 
 {% endblock %}
