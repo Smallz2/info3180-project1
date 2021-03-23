@@ -1,3 +1,22 @@
+/* Root Colors */
+
+:root {
+  --blue: #007bff;
+  --light: #f4f6fa;
+  --dark: #232e3c;
+  --light-grey: #f9f9f9;
+}
+
+/* Body */
+
 body {
-    padding-top: 50px;
+  padding-top: 50px;
+  background-color: var(--light-grey)
+}
+
+
+/* General Stuff */
+
+.me-2 {
+  margin-right: .5rem;
 }
