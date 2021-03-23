@@ -21,7 +21,7 @@ def upgrade():
     op.create_table('properties',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=80), nullable=True),
-    sa.Column('description', sa.String(length=255), nullable=True),
+    sa.Column('description', sa.String(length=1000), nullable=True),
     sa.Column('number_of_bedrooms', sa.Float(), nullable=True),
     sa.Column('number_of_bathrooms', sa.Float(), nullable=True),
     sa.Column('price', sa.Integer(), nullable=True),

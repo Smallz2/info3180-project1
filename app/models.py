@@ -5,7 +5,7 @@ class Property(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   title = db.Column(db.String(80))
-  description = db.Column(db.String(255))
+  description = db.Column(db.String(1000))
   number_of_bedrooms = db.Column(db.Float())
   number_of_bathrooms = db.Column(db.Float())
   price = db.Column(db.Integer)
